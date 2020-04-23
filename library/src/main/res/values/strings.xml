@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">library</string>
+    <string name="down_pull_to_refresh">Pull to Refresh</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="release_to_refresh">Release to Refresh</string>
+    <string name="finish_refresh">Finish Refresh</string>
+
 </resources>

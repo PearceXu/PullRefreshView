@@ -232,7 +232,9 @@ public class PullRefreshView extends FrameLayout {
             case VIEW_STATUS_PULL:
                 mStatusView.setVisibility(VISIBLE);
                 mStatusView.setImageResource(R.drawable.ic_down_arrow);
-                mStatusTextView.setText("下拉刷新...");
+                ;
+                mStatusTextView.setText(mContext.getString(R.string.down_pull_to_refresh));
+//                mStatusTextView.setText("下拉刷新...");
 //                if (mLoadingAnimation != null){
 //                    mLoadingAnimation.cancel();
 //                }
@@ -240,20 +242,25 @@ public class PullRefreshView extends FrameLayout {
             case VIEW_STATUS_LOADING:
                 mStatusView.setVisibility(GONE);
 //                mStatusView.setImageResource(R.drawable.ic_refresh);
-                mStatusTextView.setText("正在加载中...");
+//                mStatusTextView.setText("正在加载中...");
+                mStatusTextView.setText(mContext.getString(R.string.loading));
+
                 mProgressBar.setVisibility(VISIBLE);
 //                startLoading();
                 break;
             case VIEW_STATUS_REDY_RELEASE:
                 mStatusView.setVisibility(VISIBLE);
                 mStatusView.setImageResource(R.drawable.ic_up_arrow);
-                mStatusTextView.setText("释放后刷新");
+//                mStatusTextView.setText("释放后刷新");
+                mStatusTextView.setText(mContext.getString(R.string.release_to_refresh));
+
 //                if (mLoadingAnimation != null){
 //                    mLoadingAnimation.cancel();
 //                }
                 break;
             case VIEW_STATUS_LOADING_FINISH:
-                mStatusTextView.setText("刷新完成");
+//                mStatusTextView.setText("刷新完成");
+                mStatusTextView.setText(mContext.getString(R.string.finish_refresh));
                 mStatusView.setImageResource(R.drawable.ic_finish);
 //                if (mLoadingAnimation != null){
 //                    mLoadingAnimation.cancel();
