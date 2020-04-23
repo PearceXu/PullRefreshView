@@ -3,6 +3,7 @@ package com.library.pullrefresh;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -69,7 +70,7 @@ public class PullRefreshView extends FrameLayout {
 
         @Override
         public int clampViewPositionVertical(@NonNull View child, int top, int dy) {
-            if (top <= 0){
+            if (top <=0 && dy <= 0){
                 return 0;
             }
             mPullOffset = top;
