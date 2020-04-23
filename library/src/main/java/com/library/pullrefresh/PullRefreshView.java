@@ -1,6 +1,7 @@
 package com.library.pullrefresh;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -68,11 +69,11 @@ public class PullRefreshView extends FrameLayout {
 
         @Override
         public int clampViewPositionVertical(@NonNull View child, int top, int dy) {
-            if (top < 0){
+            if (top <= 0){
                 return 0;
             }
             mPullOffset = top;
-            if (mPullOffset >= mPullLoadingViewHeight){
+            if (mPullOffset > mPullLoadingViewHeight){
                 changeViewByStatus(VIEW_STATUS_REDY_RELEASE);
             }else {
                 changeViewByStatus(VIEW_STATUS_PULL);
@@ -220,6 +221,7 @@ public class PullRefreshView extends FrameLayout {
         if (mDraggerHelper != null){
             View view  = getChildAt(1);
             mDraggerHelper.smoothSlideViewTo(view,0,0);
+            invalidate();
         }
     }
 
@@ -262,9 +264,11 @@ public class PullRefreshView extends FrameLayout {
 //                mStatusTextView.setText("刷新完成");
                 mStatusTextView.setText(mContext.getString(R.string.finish_refresh));
                 mStatusView.setImageResource(R.drawable.ic_finish);
+                mStatusView.setVisibility(VISIBLE);
 //                if (mLoadingAnimation != null){
 //                    mLoadingAnimation.cancel();
 //                }
+
                 break;
         }
         mViewStatus = status;
