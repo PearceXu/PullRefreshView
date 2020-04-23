@@ -73,7 +73,7 @@ public class PullRefreshView extends FrameLayout {
                 return 0;
             }
             mPullOffset = top;
-            if (mPullOffset > mPullLoadingViewHeight){
+            if (mPullOffset >= mPullLoadingViewHeight){
                 changeViewByStatus(VIEW_STATUS_REDY_RELEASE);
             }else {
                 changeViewByStatus(VIEW_STATUS_PULL);
@@ -99,7 +99,6 @@ public class PullRefreshView extends FrameLayout {
                 mDraggerHelper.settleCapturedViewAt(0, 0);
             }
             invalidate();
-
         }
 
     }
@@ -118,9 +117,7 @@ public class PullRefreshView extends FrameLayout {
         super(context, attrs, defStyleAttr);
         mContext = context;
         mPullLoadingView = LayoutInflater.from(mContext).inflate(R.layout.layout_pull_refresh,this,false);
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
-        layoutParams.gravity = Gravity.TOP;
-        addView(mPullLoadingView,0,layoutParams);
+        addView(mPullLoadingView);
     }
 
     @Override
@@ -233,8 +230,7 @@ public class PullRefreshView extends FrameLayout {
         switch (status){
             case VIEW_STATUS_PULL:
                 mStatusView.setVisibility(VISIBLE);
-                mStatusView.setImageResource(R.drawable.ic_down_arrow);
-                ;
+                mStatusView.setImageResource(R.drawable.ic_down_arrow);;
                 mStatusTextView.setText(mContext.getString(R.string.down_pull_to_refresh));
 //                mStatusTextView.setText("下拉刷新...");
 //                if (mLoadingAnimation != null){
