@@ -68,11 +68,11 @@ public class PullRefreshView extends FrameLayout {
 
         @Override
         public int clampViewPositionVertical(@NonNull View child, int top, int dy) {
-            if (dy < 0){
+            if (top < 0){
                 return 0;
             }
             mPullOffset = top;
-            if (mPullOffset > mPullLoadingViewHeight){
+            if (mPullOffset >= mPullLoadingViewHeight){
                 changeViewByStatus(VIEW_STATUS_REDY_RELEASE);
             }else {
                 changeViewByStatus(VIEW_STATUS_PULL);
@@ -116,7 +116,7 @@ public class PullRefreshView extends FrameLayout {
     public PullRefreshView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        mPullLoadingView = LayoutInflater.from(mContext).inflate(R.layout.layout_pull_refresh,null,false);
+        mPullLoadingView = LayoutInflater.from(mContext).inflate(R.layout.layout_pull_refresh,this,false);
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
         layoutParams.gravity = Gravity.TOP;
         addView(mPullLoadingView,0,layoutParams);
