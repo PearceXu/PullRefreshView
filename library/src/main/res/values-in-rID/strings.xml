@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Perpustakaan</string>
 	<string name="down_pull_to_refresh">Tarik ke Segarkan</string>
 	<string name="loading">Memuat…</string>
 	<string name="release_to_refresh">Lepaskan untuk Segarkan</string>
