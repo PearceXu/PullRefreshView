@@ -58,6 +58,8 @@ public class PullRefreshView extends FrameLayout {
 
     int mViewStatus = VIEW_STATUS_LOADING_FINISH;
 
+    View mCaptureView;
+
     public void setListener(PullRefreshListener listener) {
         this.mListener = listener;
     }
@@ -83,6 +85,7 @@ public class PullRefreshView extends FrameLayout {
         }
         @Override
         public void onViewCaptured(View capturedChild, int activePointerId) {
+            mCaptureView = capturedChild;
             super.onViewCaptured(capturedChild, activePointerId);
         }
         @Override
@@ -140,29 +143,7 @@ public class PullRefreshView extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        boolean ret = mDraggerHelper.shouldInterceptTouchEvent(ev);
-        if (mIntercept){
-            ret = true;
-        }else {
-            ret = false;
-        }
-        return ret;
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        boolean ret = super.dispatchTouchEvent(ev);
-        if (!ret){
-            mIntercept = true;
-        }
-        if (ev.getAction() == MotionEvent.ACTION_UP){
-            mIntercept = false;
-        }
-        if (ev.getAction() == MotionEvent.ACTION_DOWN){
-            mDraggerHelper.processTouchEvent(ev);
-        }
-
-        return ret;
+        return mDraggerHelper.shouldInterceptTouchEvent(ev);
     }
 
     @Override
@@ -173,8 +154,16 @@ public class PullRefreshView extends FrameLayout {
 
     @Override
     public void computeScroll() {
-        if (mDraggerHelper != null && mDraggerHelper.continueSettling(true)) {
+        if (mDraggerHelper.continueSettling(true)) {
             invalidate();
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        if (mCaptureView != null){
+            mCaptureView.offsetTopAndBottom(mPullOffset);
         }
     }
 
