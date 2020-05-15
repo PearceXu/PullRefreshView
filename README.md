@@ -13,7 +13,8 @@ dependencies {
 }
 ```
 - 使用
-...xml
+
+``` xml
 <?xml version="1.0" encoding="utf-8"?>
 <com.library.pullrefresh.PullRefreshView
     android:id="@+id/pull_refresh_view"
@@ -39,8 +40,8 @@ dependencies {
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.library.pullrefresh.PullRefreshView>
-...
-...java
+```
+``` java
 public class MainActivity extends AppCompatActivity implements PullRefreshView.PullRefreshListener {
     PullRefreshView mPullView;
     @Override
@@ -65,7 +66,5 @@ public class MainActivity extends AppCompatActivity implements PullRefreshView.P
 
 }
 
-
-...
-
+```
  
