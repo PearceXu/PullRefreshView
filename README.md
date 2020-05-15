@@ -9,7 +9,7 @@ allprojects {
     }
 }
 dependencies {
-   implementation 'com.github.PearceXu:PullRefreshView:1.0.8'
+   implementation 'com.github.PearceXu:PullRefreshView:1.0.9'
 }
 ```
 - 使用
