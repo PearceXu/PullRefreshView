@@ -143,8 +143,7 @@ public class PullRefreshView extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        boolean ret = mDraggerHelper.shouldInterceptTouchEvent(ev);
-        return true;
+        return mDraggerHelper.shouldInterceptTouchEvent(ev);
     }
 
     @Override
