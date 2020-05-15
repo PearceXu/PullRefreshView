@@ -1,10 +1,7 @@
 package com.library.pullrefresh;
 
 import android.content.Context;
-import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -67,6 +64,9 @@ public class PullRefreshView extends FrameLayout {
     class DraggerCB extends ViewDragHelper.Callback{
         @Override
         public boolean tryCaptureView(@NonNull View view, int i) {
+            if (!isEnabled()){
+                return false;
+            }
             return true;
         }
 
@@ -206,6 +206,7 @@ public class PullRefreshView extends FrameLayout {
 
     public void stopLoading(){
         changeViewByStatus(VIEW_STATUS_LOADING_FINISH);
+        mPullOffset = 0;
         if (mDraggerHelper != null){
             View view  = getChildAt(1);
             mDraggerHelper.smoothSlideViewTo(view,0,0);
