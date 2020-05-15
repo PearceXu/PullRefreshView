@@ -1,6 +1,6 @@
 # PullRefreshView
 Single PullRefreshView widget for android app 
-#How to use
+# How to use
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
